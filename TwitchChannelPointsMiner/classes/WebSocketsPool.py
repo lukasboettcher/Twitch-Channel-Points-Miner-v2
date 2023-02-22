@@ -173,6 +173,12 @@ class WebSocketsPool:
             streamer_index = get_streamer_index(ws.streamers, message.channel_id)
             if streamer_index != -1:
                 try:
+                    if message.topic == "community-moments-channel-v1":
+                        if message.type == "active":
+                            ws.twitch.claim_moment(
+                                ws.streamers[streamer_index],
+                                message.data["moment_id"],
+                            )
                     if message.topic == "community-points-user-v1":
                         if message.type in ["points-earned", "points-spent"]:
                             balance = message.data["balance"]["balance"]
