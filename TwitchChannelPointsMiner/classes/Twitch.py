@@ -649,16 +649,18 @@ class Twitch(object):
         }
         self.post_gql_request(json_data)
 
-    def claim_moment(self, streamer, claim_id):
+    # === MOMENTS === #
+    def claim_moment(self, streamer, moment_id):
         if Settings.logger.less is False:
             logger.info(
                 f"Claiming the moment for {streamer}!",
-                extra={"emoji": ":gift:", "event": Events.MOMENT_CLAIM},
+                extra={"emoji": ":video_camera:",
+                       "event": Events.MOMENT_CLAIM},
             )
 
-        json_data = copy.deepcopy(GQLOperations.ClaimMoment)
+        json_data = copy.deepcopy(GQLOperations.CommunityMomentCallout_Claim)
         json_data["variables"] = {
-            "input": {"momentID": claim_id}
+            "input": {"momentID": moment_id}
         }
         self.post_gql_request(json_data)
 
