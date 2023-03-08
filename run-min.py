@@ -6,6 +6,7 @@ twitch_miner = TwitchChannelPointsMiner(
     claim_drops_startup=False,
     enable_analytics=False,
     streamer_settings=StreamerSettings(
+        claim_moments=True,
         make_predictions=False,
         follow_raid=True,
         claim_drops=False,
